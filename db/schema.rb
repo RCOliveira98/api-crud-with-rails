@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_06_02_011828) do
 
   create_table "phones", force: :cascade do |t|
     t.string "number"
-    t.integer "contact_id", null: false
+    t.integer "contact_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["contact_id"], name: "index_phones_on_contact_id"
