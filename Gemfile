@@ -9,9 +9,7 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
-# my gems
-# A library for generating fake data such as names, addresses, and phone numbers.
-gem 'faker'
+# my gens
 # Repository for collecting Locale data for Ruby on Rails I18n as well as other interesting, Rails related I18n stuff http://rails-i18n.org
 gem 'rails-i18n', '~> 6.0.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -36,6 +34,11 @@ group :development, :test do
 end
 
 group :development do
+  # Rails >= 3 pry initializer
+  gem 'pry-rails'
+  # A library for generating fake data such as names, addresses, and phone numbers.
+  gem 'faker'
+  #
   gem 'listen', '~> 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
