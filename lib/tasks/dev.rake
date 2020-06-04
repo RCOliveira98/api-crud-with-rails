@@ -30,6 +30,16 @@ namespace :dev do
     end
     puts "====> Telefones cadastrados com sucesso! :)"
 
+    puts "====> Cadastrando endereços..."
+    Contact.all.each do |contact|
+      Address.create!(
+        street: Faker::Address.city,
+        city: Faker::Address.street_address,
+        contact: contact
+      )
+    end
+    puts "====> Endereços cadastrados com sucesso! :)"
+
   end
 
 end
