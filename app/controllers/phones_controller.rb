@@ -41,11 +41,12 @@ class PhonesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_phone
-      @phone = Phone.find(params[:id])
+      @phone = params[:contact_id] ? Contact.find(params[:contact_id]).phones : Phone.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def phone_params
-      params.require(:phone).permit(:number, :contact_id)
+      # params.require(:phone).permit(:number, :contact_id)
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params)
     end
 end
