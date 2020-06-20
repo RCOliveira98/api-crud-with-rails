@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     resource :phones, only: [:show]
     resource :phones, only: [:show], path: 'relationships/phones'
 
-    resource :address, only: [:show]
-    resource :address, only: [:show], path: 'relationships/address'
+    resource :address, only: [:show,:update]
+    resource :address, only: [:show, :update], path: 'relationships/address'
   end
   resources :kinds
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

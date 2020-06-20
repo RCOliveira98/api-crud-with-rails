@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-    before_action :set_address, only: [:show, :update, :destroy]
+    before_action :set_contact, only: [:show, :update, :destroy]
   
     # GET /addresses
     def index
@@ -10,7 +10,7 @@ class AddressesController < ApplicationController
   
     # GET /addresses/1
     def show
-      render json: @address
+      render json: @contact.address
     end
   
     # POST /addresses
@@ -26,21 +26,21 @@ class AddressesController < ApplicationController
   
     # PATCH/PUT /addresses/1
     def update
-      if @address.update(address_params)
-        render json: @address
+      if @contact.address.update(address_params)
+        render json: @contact.address
       else
-        render json: @address.errors, status: :unprocessable_entity
+        render json: @contact.errors, status: :unprocessable_entity
       end
     end
   
     # DELETE /addresses/1
     def destroy
-      @address.destroy
+      @contact.address.destroy
     end
   
     private
-      def set_address
-        @address = params[:contact_id] ? Contact.find(params[:contact_id]).address : Address.find(params[:id])
+      def set_contact
+        @contact = Contact.find(params[:contact_id])
       end
   
       def address_params
