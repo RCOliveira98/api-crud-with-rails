@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-    before_action :set_contact, only: [:show, :update, :destroy]
+    before_action :set_contact, only: [:create, :show, :update, :destroy]
   
     # GET /addresses
     def index
@@ -15,12 +15,19 @@ class AddressesController < ApplicationController
   
     # POST /addresses
     def create
-      @address = Address.new(address_params)
+
+      puts "*****************"
+      puts p @contact
+      puts "*****************"
+
+      @contact.address = Address.new(address_params)
+
+      p @contact.address
   
-      if @address.save
-        render json: @address, status: :created, location: @address
+      if @contact.save
+        render json: @contact.address, status: :created, location: contact_address_url(@contact)
       else
-        render json: @address.errors, status: :unprocessable_entity
+        render json: @contact.errors, status: :unprocessable_entity
       end
     end
   
