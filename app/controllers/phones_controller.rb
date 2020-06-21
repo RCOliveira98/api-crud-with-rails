@@ -1,5 +1,5 @@
 class PhonesController < ApplicationController
-  before_action :set_phone, only: [:show, :update, :destroy]
+  before_action :set_contact, only: [:show, :update, :destroy, :create]
 
   # GET /phones
   def index
@@ -10,17 +10,17 @@ class PhonesController < ApplicationController
 
   # GET /phones/1
   def show
-    render json: @phone
+    render json: @contact.phones
   end
 
   # POST /phones
   def create
-    @phone = Phone.new(phone_params)
+    @contact.phones << Phone.new(phone_params)
 
-    if @phone.save
-      render json: @phone, status: :created, location: @phone
+    if @contact.save
+      render json: @contact.phones, status: :created, location: contact_phones_url(@contact)
     else
-      render json: @phone.errors, status: :unprocessable_entity
+      render json: @contact.errors, status: :unprocessable_entity
     end
   end
 
@@ -35,13 +35,13 @@ class PhonesController < ApplicationController
 
   # DELETE /phones/1
   def destroy
-    @phone.destroy
+    @contact.phone.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_phone
-      @phone = params[:contact_id] ? Contact.find(params[:contact_id]).phones : Phone.find(params[:id])
+    def set_contact
+      @contact = Contact.find(params[:contact_id])
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -16,13 +16,7 @@ class AddressesController < ApplicationController
     # POST /addresses
     def create
 
-      puts "*****************"
-      puts p @contact
-      puts "*****************"
-
       @contact.address = Address.new(address_params)
-
-      p @contact.address
   
       if @contact.save
         render json: @contact.address, status: :created, location: contact_address_url(@contact)
