@@ -1,19 +1,12 @@
 class PhonesController < ApplicationController
   before_action :set_contact, only: [:show, :update, :destroy, :create]
 
-  # GET /phones
-  def index
-    @phones = Phone.all
-
-    render json: @phones
-  end
-
   # GET /phones/1
   def show
     render json: @contact.phones
   end
 
-  # POST /phones
+  # POST /contacts/:contact_id/phone
   def create
     @contact.phones << Phone.new(phone_params)
 
@@ -24,18 +17,20 @@ class PhonesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /phones/1
+  # PATCH/PUT /contacts/:contact_id/phone
   def update
-    if @phone.update(phone_params)
-      render json: @phone
+    phone = find_phone_by_id
+    if phone.update(phone_params)
+      render json: @contact.phones
     else
-      render json: @phone.errors, status: :unprocessable_entity
+      render json: @contact.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /phones/1
+  # /contacts/:contact_id/phone
   def destroy
-    @contact.phone.destroy
+    phone = find_phone_by_id
+    phone.destroy
   end
 
   private
@@ -48,5 +43,9 @@ class PhonesController < ApplicationController
     def phone_params
       # params.require(:phone).permit(:number, :contact_id)
       ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+    end
+
+    def find_phone_by_id
+      Phone.find(phone_params[:id])
     end
 end
