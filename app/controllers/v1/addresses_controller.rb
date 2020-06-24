@@ -1,4 +1,5 @@
-class AddressesController < ApplicationController
+module V1
+  class AddressesController < ApplicationController
     before_action :set_contact, only: [:create, :show, :update, :destroy]
   
     # GET /addresses
@@ -52,3 +53,4 @@ class AddressesController < ApplicationController
       end
   end
   
+end

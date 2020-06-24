@@ -18,6 +18,8 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'devise_token_auth'
 # i18n to devise
 gem 'devise-i18n'
+# A plugin for versioning Rails based RESTful APIs.
+gem 'versionist'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
