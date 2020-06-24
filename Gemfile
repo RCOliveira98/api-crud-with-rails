@@ -14,6 +14,10 @@ gem 'puma', '~> 4.1'
 gem 'rails-i18n', '~> 6.0.0'
 # ActiveModel::Serializer implementation and Rails hooks
 gem 'active_model_serializers', '~> 0.10.0'
+# Token based authentication for Rails JSON APIs.
+gem 'devise_token_auth'
+# i18n to devise
+gem 'devise-i18n'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
