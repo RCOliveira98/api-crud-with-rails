@@ -4,7 +4,9 @@ module V1
   
     # GET /contacts
     def index
-      @contacts = Contact.all
+      page_number = params[:page] ? params[:page][:number] : 1
+      page_size = params[:page] ? params[:page][:size] : 25
+      @contacts = Contact.all.page(page_number).per(page_size)
   
       render json: @contacts, include: :kind
     end
